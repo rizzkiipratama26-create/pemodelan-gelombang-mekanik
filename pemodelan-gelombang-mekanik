@@ -1,0 +1,40 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+print("=" * 55)
+print("PEMODELAN GELOMBANG MEKANIK")
+print("=" * 55)
+
+# Input parameter gelombang
+f = float(input("Masukkan frekuensi (Hz): "))
+lam = float(input("Masukkan panjang gelombang (m): "))
+
+# Persamaan cepat rambat gelombang
+v = f * lam
+
+print("\nHasil perhitungan:")
+print(f"Frekuensi              : {f:.2f} Hz")
+print(f"Panjang gelombang      : {lam:.2f} m")
+print(f"Cepat rambat gelombang : {v:.2f} m/s")
+
+# Membuat model gelombang
+x = np.linspace(0, 4 * lam, 1000)
+t = 0.0
+y = np.sin(2 * np.pi * (x / lam - f * t))
+
+# Grafik
+plt.figure(figsize=(10, 5))
+plt.plot(x, y)
+plt.axhline(0, linewidth=0.8)
+plt.xlabel("Posisi (m)")
+plt.ylabel("Simpangan relatif")
+plt.title(f"Model Gelombang Mekanik | f = {f:g} Hz, λ = {lam:g} m, v = {v:g} m/s")
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+
+# Menyimpan grafik
+output = "gambar/grafik_gelombang.png"
+plt.savefig(output, dpi=300)
+print(f"Grafik disimpan sebagai: {output}")
+
+plt.show()
